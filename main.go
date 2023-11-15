@@ -3,11 +3,10 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/gorilla/mux"
 	"log"
 	"net/http"
 	"strconv"
-
-	"github.com/gorilla/mux"
 )
 
 type Confidence struct {
@@ -21,7 +20,7 @@ const LightClientURL = "http://localhost:8000"
 func GetConfidenceHandler(w http.ResponseWriter, r *http.Request) {
 	// Extract the block number from the URL path parameter
 	vars := mux.Vars(r)
-	blockStr := vars["blockNumber"]
+	blockStr := vars["blockNumbers"]
 
 	blockNumber, err := strconv.ParseUint(blockStr, 10, 32)
 	if err != nil {
